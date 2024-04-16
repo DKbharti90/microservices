@@ -8,18 +8,17 @@ spring:
     gateway:
       routes:
         - id: USER-SERVICE
-          uri: lb://USER-SERVICE
+          uri: lb://USER-SERVICE  # Load balanced service ID
           predicates:
-            - Path=/user/**
-        - id: HOTEL-SERVICE
-          uri: lb://HOTEL-SERVICE
-          predicates:
-            - Path=/hotel/**
+            - Path=/user/**,/staff/**
         - id: RATING-SERVICE
-          uri: lb://RATING-SERVICE
+          uri: lb://RATING-SERVICE  # Load balanced service ID
           predicates:
             - Path=/rating/**
-
+        - id: HOTEL-SERVICE
+          uri: lb://HOTEL-SERVICE  # Load balanced service ID
+          predicates:
+            - Path=/hotel/**
 
 
 eureka:

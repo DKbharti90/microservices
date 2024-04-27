@@ -1,10 +1,7 @@
 package com.dk.user.service.UserService.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.yaml.snakeyaml.events.Event;
 
 import java.sql.Array;
@@ -16,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 @Table(name = "ms_user")
 public class User {
     @Id

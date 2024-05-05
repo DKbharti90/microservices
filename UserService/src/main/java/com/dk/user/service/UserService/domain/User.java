@@ -2,9 +2,6 @@ package com.dk.user.service.UserService.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.yaml.snakeyaml.events.Event;
-
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 

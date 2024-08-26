@@ -1,4 +1,4 @@
-package com.dk.rating.service.RatingService.config;
+package com.dk.hotel.service.HotelService.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,21 +9,21 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.web.SecurityFilterChain;
 
+
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {
 
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        http
+                .authorizeHttpRequests(request->request.anyRequest().authenticated())
+                .oauth2ResourceServer(auth->auth.jwt(jwt->jwt.jwtAuthenticationConverter(customJwtAuthenticationConverter())));
 
-
-        httpSecurity.authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated()).oauth2ResourceServer(oauth -> oauth.jwt(jwtConfigurer -> jwtConfigurer.jwtAuthenticationConverter(customJwtAuthenticationConverter())));
-
-        return httpSecurity.build();
-
+        return http.build();
     }
-
 
     @Primary
     @Bean(name = "customJwtAuthenticationConverter")
@@ -33,5 +33,3 @@ public class WebSecurityConfig {
         return converter;
     }
 }
-
-
